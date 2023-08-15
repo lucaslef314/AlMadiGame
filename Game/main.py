@@ -20,7 +20,7 @@ def main():
         #Main game loop
         while restart:
 
-            time.sleep(1./100)
+            #time.sleep(1./100)
             #Updates game, output may end game
             out = game.game_update()
             

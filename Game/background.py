@@ -8,6 +8,7 @@ background class
 from turtle_stuff import *
 from obstacle import Obstacle
 from enemy import Enemy
+import time
 
 class BackGround:
 
@@ -43,6 +44,8 @@ class BackGround:
         #self.drawer.hideturtle()
         self.read_map(level)
 
+        #Creates a int to track frames
+        self.frame_time = 0 
 
         #Adds new shapes to window
         self.window.addshape("breakable_block.gif")
@@ -231,4 +234,19 @@ class BackGround:
         #move drawer out of the way and update screen
         self.drawer.goto(-1000,1000)
         self.drawer.hideturtle()
+
+    
         self.window.update()
+
+        #Aiming for 40 frame per secons
+        fps = 80
+        seconds_per_frame = 1 / fps
+        time_dif = time.time() - self.frame_time
+        
+
+        if time_dif < seconds_per_frame :
+            #e = 1
+            time.sleep(seconds_per_frame - time_dif)
+
+        #print(time_dif, time.time() - self.frame_time)
+        self.frame_time = time.time()
