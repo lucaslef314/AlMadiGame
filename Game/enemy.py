@@ -29,7 +29,6 @@ class Enemy:
         self.speed = 2
 
 
-
     def draw_enemy(self, turt, x_cor, y_cor):
         """Draws the enemy
 
