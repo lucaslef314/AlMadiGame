@@ -32,7 +32,7 @@ def make_screen(width, height, title, color='black'):
     screen.setup(width,height)
     screen.bgcolor(color)
     screen.title(title)
-    # turtle.tracer(False)
+    #turtle.tracer(False)
     # turtle.hideturtle()
     
 

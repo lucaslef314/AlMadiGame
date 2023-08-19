@@ -9,6 +9,7 @@ from turtle_stuff import *
 from obstacle import Obstacle
 from enemy import Enemy
 import time
+from text import Text
 
 class BackGround:
 
@@ -36,6 +37,11 @@ class BackGround:
         #Stores the ground y, the position that the blocks will be at
         self.ground_y = self.window_height//-2 + 3*self.tile_size
         self.window = make_screen(self.window_width, self.window_height, 'Super Al Madi', 'sky blue' )
+        
+        
+        #self.game_name = Text(0,200, 'black', 'super al madi', '', 100)
+        #self.game_name = Text(0,100, 'black', 'more test text', '', 200)
+        
         self.window.tracer(False)
         #turtle.hideturtle()
        # turtle.goto(-1000,1000)
@@ -59,25 +65,6 @@ class BackGround:
         self.window.addshape("al_madi4.gif")
 
 
-
-
-    def display_text(self, x , y , color , line1, line2=''):
-        """Writes text at some point
-
-        Args:
-            x (float): x position of text being written
-            y (float): y position of text being written
-            color (string): color of text
-            line1 (string): _description_
-            line2 (string, optional): Second line, defaults to None
-        """
-
-        self.drawer.goto(x,y)
-        self.drawer.color(color)
-        self.drawer.write(line1, font=('Arial', 16, 'normal'))
-
-        self.drawer.goto(x,(y-25))
-        self.drawer.write(line2, font=('Arial', 16, 'normal'))
 
 
     def read_map(self, level):
@@ -231,14 +218,23 @@ class BackGround:
                 enemy.draw_enemy(self.drawer, x_cor, y_cor)
 
 
-        #move drawer out of the way and update screen
+        #move drawer out of the way and updates screen
         self.drawer.goto(-1000,1000)
         self.drawer.hideturtle()
 
+        #updates all text boxes
+
+        for texts in Text.instance_list : 
+
+            texts.print_text()
+                
     
+        
+        #self.game_name.print_text()
+
         self.window.update()
 
-        #Aiming for 40 frame per secons
+        #Aiming for 40 frames per second
         fps = 80
         seconds_per_frame = 1 / fps
         time_dif = time.time() - self.frame_time

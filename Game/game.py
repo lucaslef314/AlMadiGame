@@ -23,11 +23,12 @@ from background import BackGround
 from turtle_stuff import *
 from character import Character
 import time
+from text import Text
 
 
 class Game:
 
-    def __init__(self, level='1_1'):
+    def __init__(self, lives, level='1_1'):
         '''Intializes the game.
         Takes in a level to load. Currently the only levels are 1_1 and 1_0
         '''
@@ -52,6 +53,15 @@ class Game:
 
         #Score Variables
         self.score = 0
+        self.lives = lives
+
+        #Creates text fields used
+        self.score_display = Text(0, self.background.window_height//2.2, 'black',
+                                     'Score:', 10, 0 )
+        
+        self.life_counter = Text(0,0, 'white',lives, 10, 'Lives Remaining')
+        
+        self.won_text = Text(-100,0, 'white', '', 0, '')
 
     
     def game_update(self):
@@ -73,23 +83,24 @@ class Game:
         if object_out == 'win':
             return 'win'
         
-        
+        #Displays text according to points earned and location
         elif type(object_out) == int:
             
             self.score += object_out
-
-            self.background.display_text(0, self.character.y_cor,
-                                         'red', object_out)
+            
+            object_points = Text(0, self.character.y_cor + 50,
+                                         'dark red', object_out, 25)
         
         if type(en_out) == int:
             
             self.score += en_out
-            self.background.display_text(0, self.character.y_cor,
-                                         'red', en_out)
+            
+            enemy_points = Text(0, self.character.y_cor + 50,
+                                         'dark red', en_out, 25)
         
+
         
-        self.background.display_text(0, self.background.window_height//2.2, 'black',
-                                     'Score:',self.score )
+        self.score_display.resume_text(10, 'nope', self.score)
 
        
 
@@ -108,11 +119,15 @@ class Game:
         self.background.draw_map(self.character.y_cor,int(offset//50),offset%50, shape)
 
 
-    def life_update(self, lives):
+    def life_update(self):
 
         self.background.window.bgcolor('black')
 
-        self.background.display_text(0,0, 'white',lives, 'Lives Remaining')
+        #self.background.resume(0,0, 'white',self.lives, 'Lives Remaining')
+        #self.life_counter.resume_text(10, self.lives)
+        self.life_counter.print_text()
+        self.background.window.update()
+        
 
         time.sleep(1)
         self.background.window.bgcolor('sky blue')
@@ -125,7 +140,11 @@ class Game:
         line2 = "You got a score of " + str(self.score) + " !"
 
         self.background.drawer.clear()
-        self.background.display_text(-200,0, 'white',line1, line2)
+
+        self.won_text.resume_text(1, line1, line2)
+        self.won_text.print_text()
+        self.background.window.update()
+        
         time.sleep(3)
 
         

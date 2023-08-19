@@ -11,8 +11,8 @@ def main():
     #Game setup, in loop for lives
     while True:
         
-        game = Game()
-        game.life_update(lives)
+        game = Game(lives)
+        game.life_update()
 
         restart = True
 
@@ -47,7 +47,6 @@ def main():
 
 
         
-
 
 if __name__ == '__main__':
     
