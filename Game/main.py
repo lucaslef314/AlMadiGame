@@ -1,3 +1,23 @@
+'''
+name: character.py
+author: Lucas Lefebvre
+course: CS151 section B
+date (last edit): 5/3/2023
+
+Plays a version of the classic game super character bros.
+
+
+Important Numbers
+Tile size 50
+
+Screen width: 16 Tiles
+Screen height: 14 tiles
+Width: 800
+Height: 700
+
+'''
+
+
 from game import Game
 import time
 
@@ -20,7 +40,7 @@ def main():
         #Main game loop
         while restart:
 
-            #time.sleep(1./100)
+
             #Updates game, output may end game
             out = game.game_update()
             

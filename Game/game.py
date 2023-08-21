@@ -1,24 +1,6 @@
-'''
-name: character.py
-author: Lucas Lefebvre
-course: CS151 section B
-date (last edit): 5/3/2023
-
-Plays a version of the classic game super character bros.
 
 
-Important Numbers
-Tile size 50
 
-Screen width: 16 Tiles
-Screen height: 14 tiles
-Width: 800
-Height: 700
-
-'''
-
-
-from turtle import Screen, Turtle
 from background import BackGround
 from turtle_stuff import *
 from character import Character
@@ -120,20 +102,20 @@ class Game:
 
 
     def life_update(self):
+        #tells the player lives remaining
 
         self.background.window.bgcolor('black')
 
-        #self.background.resume(0,0, 'white',self.lives, 'Lives Remaining')
-        #self.life_counter.resume_text(10, self.lives)
         self.life_counter.print_text()
         self.background.window.update()
         
-
         time.sleep(1)
         self.background.window.bgcolor('sky blue')
-        #self.background = BackGround(800,700, self.level)
+
+
 
     def won(self):
+        #tells the player they have won
         
         self.background.window.bgcolor('black')
         line1 = "Congratulations you have completed the level!"

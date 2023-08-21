@@ -229,20 +229,19 @@ class BackGround:
             texts.print_text()
                 
     
-        
-        #self.game_name.print_text()
 
         self.window.update()
 
-        #Aiming for 40 frames per second
+        #Aiming for 40 frames per second. The game calculates locations then draws the game updates. 
+        #both of these makes trying to get an exact frame rate, so I had to 2x 40. 
+        #this code just slows down fast computers so the game doesn't run to fast, it cannot make the game run faster
         fps = 80
         seconds_per_frame = 1 / fps
         time_dif = time.time() - self.frame_time
         
 
         if time_dif < seconds_per_frame :
-            #e = 1
+            
             time.sleep(seconds_per_frame - time_dif)
 
-        #print(time_dif, time.time() - self.frame_time)
         self.frame_time = time.time()
